@@ -12,7 +12,7 @@
       "name": "Oceanview Resort",
       "location": "Miami, FL",
       "price": 450,
-      "reserved": true
+      "reserved": false
     },
     {
       "id": 3,
@@ -43,7 +43,7 @@
       "to": "Los Angeles",
       "date": "2024-12-15",
       "price": 450,
-      "reserved": true
+      "reserved": false
     },
     {
       "id": 2,
@@ -51,7 +51,7 @@
       "to": "Miami",
       "date": "2024-12-20",
       "price": 320,
-      "reserved": true
+      "reserved": false
     },
     {
       "id": 3,
@@ -59,7 +59,7 @@
       "to": "Seattle",
       "date": "2024-12-18",
       "price": 280,
-      "reserved": true
+      "reserved": false
     },
     {
       "id": 4,
@@ -67,7 +67,7 @@
       "to": "San Francisco",
       "date": "2024-12-22",
       "price": 520,
-      "reserved": true
+      "reserved": false
     },
     {
       "id": 5,
@@ -84,7 +84,7 @@
       "destination": "Grand Canyon",
       "duration": "3 days",
       "price": 750,
-      "reserved": true
+      "reserved": false
     },
     {
       "id": 2,

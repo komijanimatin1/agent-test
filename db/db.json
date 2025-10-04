@@ -1,0 +1,118 @@
+{
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Grand Palace Hotel",
+      "location": "New York, NY",
+      "price": 299,
+      "reserved": false
+    },
+    {
+      "id": 2,
+      "name": "Oceanview Resort",
+      "location": "Miami, FL",
+      "price": 450,
+      "reserved": true
+    },
+    {
+      "id": 3,
+      "name": "Mountain Lodge",
+      "location": "Denver, CO",
+      "price": 199,
+      "reserved": false
+    },
+    {
+      "id": 4,
+      "name": "City Center Inn",
+      "location": "Chicago, IL",
+      "price": 179,
+      "reserved": false
+    },
+    {
+      "id": 5,
+      "name": "Luxury Suites",
+      "location": "Los Angeles, CA",
+      "price": 599,
+      "reserved": false
+    }
+  ],
+  "flights": [
+    {
+      "id": 1,
+      "from": "New York",
+      "to": "Los Angeles",
+      "date": "2024-12-15",
+      "price": 450,
+      "reserved": true
+    },
+    {
+      "id": 2,
+      "from": "Chicago",
+      "to": "Miami",
+      "date": "2024-12-20",
+      "price": 320,
+      "reserved": true
+    },
+    {
+      "id": 3,
+      "from": "Denver",
+      "to": "Seattle",
+      "date": "2024-12-18",
+      "price": 280,
+      "reserved": true
+    },
+    {
+      "id": 4,
+      "from": "Boston",
+      "to": "San Francisco",
+      "date": "2024-12-22",
+      "price": 520,
+      "reserved": true
+    },
+    {
+      "id": 5,
+      "from": "Atlanta",
+      "to": "Las Vegas",
+      "date": "2024-12-25",
+      "price": 380,
+      "reserved": false
+    }
+  ],
+  "tours": [
+    {
+      "id": 1,
+      "destination": "Grand Canyon",
+      "duration": "3 days",
+      "price": 750,
+      "reserved": true
+    },
+    {
+      "id": 2,
+      "destination": "Yellowstone National Park",
+      "duration": "5 days",
+      "price": 1200,
+      "reserved": false
+    },
+    {
+      "id": 3,
+      "destination": "Niagara Falls",
+      "duration": "2 days",
+      "price": 450,
+      "reserved": false
+    },
+    {
+      "id": 4,
+      "destination": "Yosemite National Park",
+      "duration": "4 days",
+      "price": 950,
+      "reserved": false
+    },
+    {
+      "id": 5,
+      "destination": "Alaska Northern Lights",
+      "duration": "7 days",
+      "price": 2100,
+      "reserved": false
+    }
+  ]
+}

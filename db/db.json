@@ -34,6 +34,13 @@
       "location": "Los Angeles, CA",
       "price": 599,
       "reserved": false
+    },
+    {
+      "id": 6,
+      "name": "san francisco hotel",
+      "location": "San Francisco",
+      "price": 599,
+      "reserved": true
     }
   ],
   "flights": [
@@ -41,7 +48,7 @@
       "id": 1,
       "from": "New York",
       "to": "Los Angeles",
-      "date": "2024-12-15",
+      "date": "2025-12-20",
       "price": 450,
       "reserved": false
     },
@@ -49,7 +56,7 @@
       "id": 2,
       "from": "Chicago",
       "to": "Miami",
-      "date": "2024-12-20",
+      "date": "2025-12-20",
       "price": 320,
       "reserved": false
     },
@@ -67,7 +74,7 @@
       "to": "San Francisco",
       "date": "2024-12-22",
       "price": 520,
-      "reserved": false
+      "reserved": true
     },
     {
       "id": 5,
@@ -95,21 +102,21 @@
     },
     {
       "id": 3,
-      "destination": "Niagara Falls",
+      "destination": "Vizcaya Museum & Gardens in Miami",
       "duration": "2 days",
       "price": 450,
       "reserved": false
     },
     {
       "id": 4,
-      "destination": "Yosemite National Park",
+      "destination": "central park",
       "duration": "4 days",
       "price": 950,
       "reserved": false
     },
     {
       "id": 5,
-      "destination": "Alaska Northern Lights",
+      "destination": "florence",
       "duration": "7 days",
       "price": 2100,
       "reserved": false

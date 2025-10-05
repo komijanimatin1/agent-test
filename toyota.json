@@ -1,0 +1,929 @@
+{
+    "parts": [
+      {
+        "partNumber": "4101",
+        "name": {
+          "en": "DIFFERENTIAL",
+          "fa": "دیفرانسیل"
+        },
+        "subParts": [
+          {
+            "code": "4101-02",
+            "name": {
+              "en": "CASE ASSY, DIFFERENTIAL",
+              "fa": "مجموعه قاب دیفرانسیل"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-10",
+            "name": {
+              "en": "RING GEAR & PINION SET, DIFFERENTIAL",
+              "fa": "ست دنده و پینیون دیفرانسیل"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-10A",
+            "name": {
+              "en": "BEARING, DRIVE PINION",
+              "fa": "بلبرینگ پینیون محرک"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-10B",
+            "name": {
+              "en": "BEARING, DRIVE PINION PILOT",
+              "fa": "بلبرینگ راهنمای پینیون"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-10C",
+            "name": {
+              "en": "NUT, LOCK",
+              "fa": "مهره قفل‌دار"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-10D",
+            "name": {
+              "en": "SHIM, BEARING PRELOAD ADJUST",
+              "fa": "واشر تنظیم پیش‌بار بلبرینگ"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-20",
+            "name": {
+              "en": "CASE SUB-ASSY, DIFFERENTIAL",
+              "fa": "زیرمجموعه قاب دیفرانسیل"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-20A",
+            "name": {
+              "en": "NUT, ADJUSTING",
+              "fa": "مهره تنظیم"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-20B",
+            "name": {
+              "en": "BEARING, DIFFERENTIAL CASE",
+              "fa": "بلبرینگ قاب دیفرانسیل"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-49A",
+            "name": {
+              "en": "GASKET, DRAIN PLUG",
+              "fa": "واشر درپوش تخلیه"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-50",
+            "name": {
+              "en": "RETAINER, DRIVE PINION BEARING",
+              "fa": "نگهدارنده بلبرینگ پینیون محرک"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-55",
+            "name": {
+              "en": "BOLT, RING GEAR SET",
+              "fa": "پیچ مجموعه دنده حلقه‌ای"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-59",
+            "name": {
+              "en": "COVER, DIFFERENTIAL CARRIER",
+              "fa": "درپوش نگهدارنده دیفرانسیل"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-59A",
+            "name": {
+              "en": "SEAL, OIL (FOR CARRIER COVER)",
+              "fa": "واشر روغن (برای درپوش نگهدارنده)"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-61",
+            "name": {
+              "en": "GEAR, REDUCTION",
+              "fa": "چرخ‌دنده کاهنده"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-64",
+            "name": {
+              "en": "BEARING, NO.1, REDUCTION GEAR",
+              "fa": "بلبرینگ شماره ۱ چرخ‌دنده کاهنده"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-21",
+            "name": {
+              "en": "CARRIER SUB-ASSY, DIFFERENTIAL",
+              "fa": "زیرمجموعه نگهدارنده دیفرانسیل"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-40",
+            "name": {
+              "en": "HOUSING, DIFFERENTIAL",
+              "fa": "محفظه دیفرانسیل"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-46A",
+            "name": {
+              "en": "GEAR, SIDE",
+              "fa": "دنده جانبی"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-47",
+            "name": {
+              "en": "WASHER, SIDE GEAR THRUST",
+              "fa": "واشر فشار جانبی دنده"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-48",
+            "name": {
+              "en": "SPIDER",
+              "fa": "صلیب دیفرانسیل"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-48A",
+            "name": {
+              "en": "PINION",
+              "fa": "پینیون"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-49",
+            "name": {
+              "en": "WASHER, PINION THRUST",
+              "fa": "واشر فشار پینیون"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-AD",
+            "name": {
+              "en": "PLUG, DRAIN",
+              "fa": "درپوش تخلیه"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4101-AF",
+            "name": {
+              "en": "NUT",
+              "fa": "مهره"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-AK",
+            "name": {
+              "en": "LOCK, ADJUSTING",
+              "fa": "قفل تنظیم"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-CL",
+            "name": {
+              "en": "WASHER, CLAW",
+              "fa": "واشر چنگکی"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-CN",
+            "name": {
+              "en": "PIN, STRAIGHT",
+              "fa": "پین مستقیم"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4101-CT",
+            "name": {
+              "en": "WASHER, SPRING",
+              "fa": "واشر فنری"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-DY",
+            "name": {
+              "en": "BOLT",
+              "fa": "پیچ"
+            },
+            "qty": 10
+          },
+          {
+            "code": "4101-EN",
+            "name": {
+              "en": "BOLT",
+              "fa": "پیچ"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4101-EV",
+            "name": {
+              "en": "STABILIZER",
+              "fa": "میله تعادل"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4101-EW",
+            "name": {
+              "en": "COVER, RR",
+              "fa": "درپوش عقب"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4101-EX",
+            "name": {
+              "en": "RING, STOPPER",
+              "fa": "حلقه نگهدارنده"
+            },
+            "qty": 1
+          }
+        ]
+      },
+      {
+        "partNumber": "3701",
+        "name": {
+          "en": "PROPELLER SHAFT & UNIVERSAL JOINT",
+          "fa": "میل گاردان و مفصل یونیورسال"
+        },
+        "subParts": [
+          {
+            "code": "3701-01",
+            "name": {
+              "en": "SHAFT ASSY, PROPELLER",
+              "fa": "مجموعه میل گاردان"
+            },
+            "qty": 1
+          },
+          {
+            "code": "3701-40",
+            "name": {
+              "en": "YOKE, UNIVERSAL JOINT FLANGE",
+              "fa": "چنگک فلنج مفصل یونیورسال"
+            },
+            "qty": 8
+          },
+          {
+            "code": "3701-40A",
+            "name": {
+              "en": "BOLT (FOR UNIVERSAL JOINT FLANGE YOKE)",
+              "fa": "پیچ (برای چنگک فلنج مفصل یونیورسال)"
+            },
+            "qty": 2
+          },
+          {
+            "code": "3701-AA",
+            "name": {
+              "en": "BOLT",
+              "fa": "پیچ"
+            },
+            "qty": 1
+          },
+          {
+            "code": "3701-AZ",
+            "name": {
+              "en": "COVER",
+              "fa": "درپوش"
+            },
+            "qty": 1
+          },
+          {
+            "code": "3701-CU",
+            "name": {
+              "en": "DEFLECTOR",
+              "fa": "دیفلتور (پخش‌کننده)"
+            },
+            "qty": 1
+          },
+          {
+            "code": "G321",
+            "name": {
+              "en": "GENERAL PART (UNSPECIFIED)",
+              "fa": "قطعه عمومی (نامشخص)"
+            },
+            "qty": 76
+          }
+        ]
+      },
+      {
+        "partNumber": "4201",
+        "name": {
+          "en": "FRONT AXLE SHAFT",
+          "fa": "میل پلوس جلو"
+        },
+        "subParts": [
+          {
+            "code": "4201-49",
+            "name": {
+              "en": "PLATE, LOCK NUT",
+              "fa": "صفحه مهره قفل"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4201-53",
+            "name": {
+              "en": "HOUSING, FRONT AXLE",
+              "fa": "پوسته محور جلو"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4201-53A",
+            "name": {
+              "en": "RING, O (FOR FRONT AXLE HOUSING)",
+              "fa": "اورینگ (برای پوسته محور جلو)"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4201-53B",
+            "name": {
+              "en": "SEAL, OIL (FOR FRONT AXLE HOUSING)",
+              "fa": "کاسه‌نمد (برای پوسته محور جلو)"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4201-54",
+            "name": {
+              "en": "GEAR, INTERNAL",
+              "fa": "چرخ‌دنده داخلی"
+            },
+            "qty": 4
+          },
+          {
+            "code": "4201-54A",
+            "name": {
+              "en": "RING, O (FOR INTERNAL GEAR)",
+              "fa": "اورینگ (برای چرخ‌دنده داخلی)"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4201-65",
+            "name": {
+              "en": "SHAFT, FRONT AXLE INNER",
+              "fa": "میل داخلی محور جلو"
+            },
+            "qty": 10
+          },
+          {
+            "code": "4201-AA",
+            "name": {
+              "en": "BOLT",
+              "fa": "پیچ"
+            },
+            "qty": 4
+          },
+          {
+            "code": "4201-AF",
+            "name": {
+              "en": "NUT, LOCK",
+              "fa": "مهره قفل"
+            },
+            "qty": 16
+          },
+          {
+            "code": "4201-AI",
+            "name": {
+              "en": "SPACER",
+              "fa": "بوش فاصله‌دهنده"
+            },
+            "qty": 3
+          },
+          {
+            "code": "4201-EY",
+            "name": {
+              "en": "BOLT",
+              "fa": "پیچ"
+            },
+            "qty": 12
+          },
+          {
+            "code": "4201-FD",
+            "name": {
+              "en": "NUT",
+              "fa": "مهره"
+            },
+            "qty": 16
+          },
+          {
+            "code": "4201-AJ",
+            "name": {
+              "en": "BOLT",
+              "fa": "پیچ"
+            },
+            "qty": 12
+          },
+          {
+            "code": "4201-AK",
+            "name": {
+              "en": "RING, SHAFT SNAP",
+              "fa": "خار فنری محور"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4201-AL",
+            "name": {
+              "en": "WASHER, THRUST",
+              "fa": "واشر فشار"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4201-AN",
+            "name": {
+              "en": "SPACER",
+              "fa": "فاصله‌دهنده"
+            },
+            "qty": 12
+          },
+          {
+            "code": "4201-AO",
+            "name": {
+              "en": "BOLT",
+              "fa": "پیچ"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4201-AT",
+            "name": {
+              "en": "RING, SHAFT SNAP",
+              "fa": "خار محور"
+            },
+            "qty": 7
+          },
+          {
+            "code": "4201-BL",
+            "name": {
+              "en": "NUT",
+              "fa": "مهره"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4201-BT",
+            "name": {
+              "en": "WASHER, SPRING",
+              "fa": "واشر فنری"
+            },
+            "qty": 10
+          },
+          {
+            "code": "4201-CT",
+            "name": {
+              "en": "WASHER, SPRING",
+              "fa": "واشر فنری"
+            },
+            "qty": 10
+          },
+          {
+            "code": "4201-EJ",
+            "name": {
+              "en": "STECKACHSE, VORDERACHSE (FRONT AXLE SHAFT)",
+              "fa": "میل پلوس جلو"
+            },
+            "qty": 2
+          }
+        ]
+      },
+      {
+        "partNumber": "4301",
+        "name": {
+          "en": "REAR AXLE & TIE-ROD",
+          "fa": "محور عقب و میل فرمان"
+        },
+        "subParts": [
+          {
+            "code": "4301-01",
+            "name": {
+              "en": "AXLE ASSY, RR",
+              "fa": "مجموعه محور عقب"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4301-05",
+            "name": {
+              "en": "SENSOR KIT, ROTARY POSITION",
+              "fa": "کیت حسگر موقعیت چرخشی"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-16",
+            "name": {
+              "en": "CYLINDER ASSY, SWING LOCK",
+              "fa": "مجموعه سیلندر قفل چرخشی"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4301-20",
+            "name": {
+              "en": "BEAM SUB-ASSY, REAR AXLE",
+              "fa": "زیرمجموعه تیر محور عقب"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4301-20A",
+            "name": {
+              "en": "BUSHING, REAR AXLE BEAM",
+              "fa": "بوش تیر محور عقب"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-40",
+            "name": {
+              "en": "KNUCKLE, STEERING, RH",
+              "fa": "سگدست فرمان، راست"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-41",
+            "name": {
+              "en": "KNUCKLE, STEERING, LH",
+              "fa": "سگدست فرمان، چپ"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-42",
+            "name": {
+              "en": "PIN, STEERING KNUCKLE KING",
+              "fa": "پین سگدست فرمان"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-42A",
+            "name": {
+              "en": "BEARING, STEERING KNUCKLE THRUST",
+              "fa": "بلبرینگ فشار سگدست فرمان"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-42B",
+            "name": {
+              "en": "SEAL, OIL, NO.1",
+              "fa": "کاسه‌نمد شماره ۱"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-42C",
+            "name": {
+              "en": "BEARING, NEEDLE",
+              "fa": "بلبرینگ سوزنی"
+            },
+            "qty": 8
+          },
+          {
+            "code": "4301-420",
+            "name": {
+              "en": "SHIM, STEERING KNUCKLE",
+              "fa": "واشر سگدست فرمان"
+            },
+            "qty": 99
+          },
+          {
+            "code": "4301-42E",
+            "name": {
+              "en": "SEAL, OIL, NO.2",
+              "fa": "کاسه‌نمد شماره ۲"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-44",
+            "name": {
+              "en": "HUB, REAR AXLE",
+              "fa": "توپی محور عقب"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-44A",
+            "name": {
+              "en": "BEARING, INNER",
+              "fa": "بلبرینگ داخلی"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-446",
+            "name": {
+              "en": "BEARING, OUTER",
+              "fa": "بلبرینگ خارجی"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-44C",
+            "name": {
+              "en": "BOLT, HUB",
+              "fa": "پیچ توپی"
+            },
+            "qty": 16
+          },
+          {
+            "code": "4301-440",
+            "name": {
+              "en": "NUT, HUB",
+              "fa": "مهره توپی"
+            },
+            "qty": 16
+          },
+          {
+            "code": "4301-44E",
+            "name": {
+              "en": "PIN, REAR AXLE COTTER",
+              "fa": "پین محور عقب"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-44F",
+            "name": {
+              "en": "PLATE",
+              "fa": "صفحه"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-44G",
+            "name": {
+              "en": "JOINT",
+              "fa": "مفصل"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4301-HJ",
+            "name": {
+              "en": "PLATE",
+              "fa": "صفحه"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4301-JB",
+            "name": {
+              "en": "JOINT",
+              "fa": "مفصل"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4301-JC",
+            "name": {
+              "en": "WASHER, SPRING",
+              "fa": "واشر فنری"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-JD",
+            "name": {
+              "en": "BOOT",
+              "fa": "گردگیر"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4301-JE",
+            "name": {
+              "en": "COIL, SOLENOID",
+              "fa": "سیم‌پیچ سلونوئید"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4301-JI",
+            "name": {
+              "en": "RING, O",
+              "fa": "اورینگ"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-JK",
+            "name": {
+              "en": "RING, O",
+              "fa": "اورینگ"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-KA",
+            "name": {
+              "en": "PLATE",
+              "fa": "صفحه"
+            },
+            "qty": 1
+          },
+          {
+            "code": "4301-44H",
+            "name": {
+              "en": "SEAL, OIL, REAR AXLE HUB",
+              "fa": "کاسه‌نمد توپی عقب"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-45",
+            "name": {
+              "en": "NUT, CASTLE, REAR AXLE HUB",
+              "fa": "مهره قلعه‌ای توپی عقب"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-47",
+            "name": {
+              "en": "WASHER, CLAW, REAR AXLE HUB",
+              "fa": "واشر چنگکی توپی عقب"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-64",
+            "name": {
+              "en": "CAP, REAR AXLE HUB",
+              "fa": "کاپ توپی عقب"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-AB",
+            "name": {
+              "en": "TIE-ROD",
+              "fa": "میل فرمان"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-AC",
+            "name": {
+              "en": "VALVE ASSY, SOLENOID",
+              "fa": "مجموعه شیر سلونوئید"
+            },
+            "qty": 4
+          },
+          {
+            "code": "4301-AF",
+            "name": {
+              "en": "FITTING, GREASE",
+              "fa": "گریس خور"
+            },
+            "qty": 4
+          },
+          {
+            "code": "4301-AG",
+            "name": {
+              "en": "PLATE, STOPPER",
+              "fa": "صفحه نگهدارنده"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-AO",
+            "name": {
+              "en": "WASHER",
+              "fa": "واشر"
+            },
+            "qty": 4
+          },
+          {
+            "code": "4301-AS",
+            "name": {
+              "en": "SPACER",
+              "fa": "فاصله‌دهنده"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-AT",
+            "name": {
+              "en": "RING, O",
+              "fa": "اورینگ"
+            },
+            "qty": 99
+          },
+          {
+            "code": "4301-AU",
+            "name": {
+              "en": "BOLT",
+              "fa": "پیچ"
+            },
+            "qty": 4
+          },
+          {
+            "code": "4301-BR",
+            "name": {
+              "en": "BOLT",
+              "fa": "پیچ"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-BT",
+            "name": {
+              "en": "PIN SUB-ASSY",
+              "fa": "زیرمجموعه پین"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-BU",
+            "name": {
+              "en": "PIN",
+              "fa": "پین"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-BX",
+            "name": {
+              "en": "CLAMP",
+              "fa": "گیره"
+            },
+            "qty": 4
+          },
+          {
+            "code": "4301-CE",
+            "name": {
+              "en": "WASHER, SPRING",
+              "fa": "واشر فنری"
+            },
+            "qty": 2
+          },
+          {
+            "code": "4301-CG",
+            "name": {
+              "en": "WASHER, SPRING",
+              "fa": "واشر فنری"
+            },
+            "qty": 84
+          },
+          {
+            "code": "G321",
+            "name": {
+              "en": "GENERAL PART (UNSPECIFIED)",
+              "fa": "قطعه عمومی (نامشخص)"
+            },
+            "qty": 1
+          }
+        ]
+      }
+    ]
+}
+      

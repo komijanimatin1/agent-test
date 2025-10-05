@@ -10,21 +10,25 @@ import { createReactAgent } from "@langchain/langgraph/prebuilt";
 // مدل از openai
 import { ChatOpenAI } from "@langchain/openai";
 
+import { MongoDBSaver } from "@langchain/langgraph-checkpoint-mongodb";
+import { MongoClient } from "mongodb";
+
 // ------------------ TOOLS ------------------
 
 // 🔹 Flights
 const getFlights = tool(
-  async ({ date }, config) => {
-    config.writer?.(`🔍 جستجوی پرواز برای تاریخ ${date} ...`);
+  async ({ destination }, config) => {
+    config.writer?.(`🔍 جستجوی پرواز برای مقصد ${destination} ...`);
     const { data } = await axios.get("http://localhost:3001/flights");
-    const available = data.find((f) => !f.reserved);
-    config.writer?.(`✈️ نزدیک‌ترین پرواز: ${available.from} → ${available.to}`);
+    const available = data.find((f) => !f.reserved && f.to.toLowerCase().includes(destination.toLowerCase()));
+    // config.writer?.(`✈️ نزدیک‌ترین پرواز: ${available.from} → ${available.to}`);
+    config.writer?.(`✈️ نزدیک‌ترین پرواز: ${JSON.stringify(available)}`);
     return available;
   },
   {
     name: "get_flights",
-    description: "دریافت لیست پروازهای موجود",
-    schema: z.object({ date: z.string() }),
+    description: "دریافت پرواز برای مقصد مشخص",
+    schema: z.object({ destination: z.string() }),
   }
 );
 
@@ -103,31 +107,49 @@ const reserveTour = tool(
     schema: z.object({ id: z.number() }),
   }
 );
+
+// ------------------ MEMORY ------------------
+async function createCheckpointer() {
+  try {
+    const uri = "mongodb+srv://agent-test:agent-test1404@langchain.ebn5nxx.mongodb.net/?retryWrites=true&w=majority&appName=LangChain";
+    const client = new MongoClient(uri);
+    await client.connect(); // اتصال به MongoDB
+    const checkpointer = new MongoDBSaver({
+      client,
+      dbName: "langgraph_db",
+      collectionName: "checkpoints"
+    });
+    return checkpointer;
+  } catch (error) {
+    console.error("Failed to connect to MongoDB:", error);
+    throw error;
+  }
+}
+
 // ------------------ LLM ------------------
 const llm = new ChatOpenAI({
-    apiKey: "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",
-    model: "openai/gpt-4o",
-    temperature: 0,
-    configuration: {
-      baseURL: "https://openrouter.ai/api/v1",
-    },
-  });
-// ------------------ AGENT ------------------
-
-const agent = createReactAgent({
-  llm,
-  tools: [getFlights, reserveFlight, getHotels, reserveHotel, getTours, reserveTour],
+  apiKey: "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",
+  model: "openai/gpt-4o",
+  temperature: 0,
+  configuration: {
+    baseURL: "https://openrouter.ai/api/v1",
+  },
 });
 
 // ------------------ STREAM LOOP ------------------
 
 async function runScenario() {
+  const checkpointer = await createCheckpointer();
+
+  // ------------------ AGENT ------------------
+  const agent = createReactAgent({
+    llm,
+    tools: [getFlights, reserveFlight, getHotels, reserveHotel, getTours, reserveTour],
+    checkpointer,
+  });
+
   const steps = [
-    "میخوام پرواز بگیرم برای ۲۰ دسامبر",
-    "اون پروازو برام رزرو کن",
-    "برای مقصدش هتل پیدا کن",
-    "اون هتل رو رزرو کن",
-    "میخوام برای اون مقصد ی تور گردشگری هم رزرو کنم",
+   "yes"
   ];
 
   for (const msg of steps) {
@@ -137,10 +159,13 @@ async function runScenario() {
 
     for await (const [mode, chunk] of await agent.stream(
       { messages: [{ role: "user", content: msg }] },
-      { streamMode: ["updates", "messages", "custom"] }
+      { streamMode: ["updates", "messages", "custom"],
+        configurable: { thread_id: "1" } 
+      },
     )) {
       console.log(`${mode}:`, chunk);
     }
+  
   }
 }
 

@@ -1,15 +1,18 @@
+// Combined A2A Server for Flight and Hotel Agents
+// This server runs on port 5000 and mounts the flight agent at /flight and hotel at /hotel
+// Update agent card URLs accordingly: http://localhost:5000/flight/ and http://localhost:5000/hotel/
+
 import express from "express";
 import { v4 as uuidv4 } from "uuid";
 import { ChatOpenAI } from "@langchain/openai";
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
-import { A2AClient } from "@a2a-js/sdk/client"; // corrected import
+import { MultiServerMCPClient } from "@langchain/mcp-adapters";
 import { MongoClient } from "mongodb";
 import { MongoDBSaver } from "@langchain/langgraph-checkpoint-mongodb";
 import { DefaultRequestHandler, InMemoryTaskStore } from "@a2a-js/sdk/server";
 import { A2AExpressApp } from "@a2a-js/sdk/server/express";
-import { DynamicTool } from "@langchain/core/tools"; // for defining custom tools
 
-// Shared MongoClient for efficiency
+// Shared MongoClient for persistence
 const mongoUri =
   "mongodb+srv://agent-test:agent-test1404@langchain.ebn5nxx.mongodb.net/?retryWrites=true&w=majority&appName=LangChain";
 const mongoClient = new MongoClient(mongoUri);
@@ -23,89 +26,35 @@ async function createCheckpointer() {
   });
 }
 
-// Define custom tools that call the other A2A agents
-const flightTool = new DynamicTool({
-  name: "flight_agent",
-  description: "Delegate flight-related tasks to the Flight Agent. Input should be a id of the flight so u should use get fflight tool in this agent afterward give the id to flight agent.",
-  func: async (input) => {
-    if (!input || input.trim() === "") {
-      return "No specific flight details provided. Please clarify.";
-    }
-    const client = await A2AClient.fromCardUrl("http://localhost:5001/.well-known/agent-card.json");
-    const messageParams = {
-      message: {
-        kind: "message",
-        messageId: uuidv4(),
-        role: "user",
-        parts: [{ kind: "text", text: input }],
-      },
-      configuration: {
-        blocking: true,
-        acceptedOutputModes: ["text/plain"],
-      },
-    };
-    const response = await client.sendMessage(messageParams);
-    if (response.error) {
-      throw new Error(response.error);
-    }
-    return response.result?.status?.message?.parts[0]?.text || "No response from Flight Agent";
-  },
-});
-
-const hotelTool = new DynamicTool({
-  name: "hotel_agent",
-  description: "Delegate hotel-related tasks to the Hotel Agent. Input should be a id of the hotel so u should use get hotel tool in this agent afterward give the id to hotel agent.",
-  func: async (input) => {
-    if (!input || input.trim() === "") {
-      return "No specific hotel details provided. Please clarify.";
-    }
-    const client = await A2AClient.fromCardUrl("http://localhost:5002/.well-known/agent-card.json");
-    const messageParams = {
-      message: {
-        kind: "message",
-        messageId: uuidv4(),
-        role: "user",
-        parts: [{ kind: "text", text: input }],
-      },
-      configuration: {
-        blocking: true,
-        acceptedOutputModes: ["text/plain"],
-      },
-    };
-    const response = await client.sendMessage(messageParams);
-    if (response.error) {
-      throw new Error(response.error);
-    }
-    return response.result?.status?.message?.parts[0]?.text || "No response from Hotel Agent";
-  },
-});
-
-const tools = [flightTool, hotelTool];
-
-// LLM
+// --- LLM Configuration (shared) ---
 const llm = new ChatOpenAI({
   apiKey:
     "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",
   model: "openai/gpt-4o",
-  temperature: 0.2, // Slightly increased for better tool usage
+  temperature: 0,
   configuration: {
     baseURL: "https://openrouter.ai/api/v1",
   },
 });
 
-// AgentCard for Travel Agent
-const travelAgentCard = {
-  name: "Travel Agent",
-  description: "An agent for handling travel plans, including flights and hotels.",
+// --- Flight Agent Setup ---
+const flightMcpClient = new MultiServerMCPClient({
+  "flight-mcp": { url: "http://localhost:4001/mcp" },
+});
+const flightTools = await flightMcpClient.getTools();
+
+const flightAgentCard = {
+  name: "Flight Agent",
+  description: "An agent for handling flight bookings and information.",
   protocolVersion: "0.3.0",
   version: "0.1.0",
-  url: "http://localhost:5000/",
+  url: "http://localhost:5000/flight/",
   skills: [
     {
-      id: "travel",
-      name: "Travel Operations",
-      description: "Handle travel-related tasks like booking flights and hotels.",
-      tags: ["travel", "booking", "flight", "hotel"],
+      id: "flight",
+      name: "Flight Operations",
+      description: "Handle flight-related tasks",
+      tags: ["flight", "booking"],
     },
   ],
   capabilities: {
@@ -114,37 +63,22 @@ const travelAgentCard = {
   },
 };
 
-// --- Executor Implementation ---
-class TravelExecutor {
+class FlightExecutor {
   async execute(requestContext, eventBus) {
     try {
-      console.log("✈️🏨 [Executor] Incoming A2A Request:", requestContext);
+      console.log("🛫 [Flight Executor] Incoming A2A Request:", requestContext);
 
-      let userMessageContent =
-        requestContext.userMessage?.parts[0]?.text || "Default message";
-
-      console.log("📩 [Executor] User Message Content:", userMessageContent); // Log the incoming message for debugging
-
-      // Enhanced prompt to ensure tool calls with complete inputs
-      const enhancedPrompt = `
-You are a travel agent that must use tools to book flights and hotels. Do not respond without using the tools.
-For any request, break it down:
-1. Use flight_agent for flight bookings with full details (e.g., origin, destination, date).
-2. Use hotel_agent for hotel bookings with full details (e.g., location, type, date).
-Assume defaults if missing: origin=London, date=next week (e.g., October 25, 2025), duration=1 night.
-Always provide Action Input as a complete query sentence.
-Question: ${userMessageContent}
-`;
+      const userMessageContent =
+        requestContext.userMessage?.parts?.[0]?.text || "Default message";
 
       const checkpointer = await createCheckpointer();
-      const agent = createReactAgent({ llm, tools, checkpointer, });
+      const agent = createReactAgent({ llm, tools: flightTools, checkpointer });
 
+      console.log(requestContext,userMessageContent)
       const response = await agent.invoke(
         { messages: [{ role: "user", content: userMessageContent }] },
         { configurable: { thread_id: requestContext.contextId } }
       );
-
-      console.log("🤖 [Executor] Full Agent Response:", response); // Log full response for debugging
 
       const lastMessage = response.messages?.at(-1);
       const finalReply = Array.isArray(lastMessage?.content)
@@ -159,41 +93,117 @@ Question: ${userMessageContent}
         contextId: requestContext.contextId,
       };
 
-      console.log("✅ [Executor] Final Reply:", finalReply);
+      console.log("✅ [Flight Executor] Final Reply:", finalReply);
       eventBus.publish(responseMessage);
       eventBus.finished();
     } catch (err) {
-      console.error("❌ [Executor] Error:", err);
-      // Publish an error response
-      const errorReply = `An error occurred: ${err.message}. Please provide more details.`;
-      const responseMessage = {
-        kind: "message",
-        messageId: uuidv4(),
-        role: "agent",
-        parts: [{ kind: "text", text: errorReply }],
-        contextId: requestContext.contextId,
-      };
-      eventBus.publish(responseMessage);
+      console.error("❌ [Flight Executor] Error:", err);
       eventBus.finished();
     }
   }
 
   async cancelTask() {
-    console.log("🛑 [Executor] Task cancelled");
+    console.log("🛑 [Flight Executor] Task cancelled");
   }
 }
 
-// --- A2A Server Setup ---
-const executor = new TravelExecutor();
-const handler = new DefaultRequestHandler(
-  travelAgentCard,
+const flightExecutor = new FlightExecutor();
+const flightHandler = new DefaultRequestHandler(
+  flightAgentCard,
   new InMemoryTaskStore(),
-  executor
+  flightExecutor
 );
 
-const appBuilder = new A2AExpressApp(handler);
-const expressApp = appBuilder.setupRoutes(express());
+const flightAppBuilder = new A2AExpressApp(flightHandler);
+const flightExpressApp = flightAppBuilder.setupRoutes(express());
 
-expressApp.listen(5000, () => {
-  console.log("🌍 Travel A2A Agent Server running at http://localhost:5000");
+// --- Hotel Agent Setup ---
+const hotelMcpClient = new MultiServerMCPClient({
+  "hotel-mcp": { url: "http://localhost:4002/mcp" },
+});
+const hotelTools = await hotelMcpClient.getTools();
+
+const hotelAgentCard = {
+  name: "Hotel Agent",
+  description: "An agent for handling hotel bookings and information.",
+  protocolVersion: "0.3.0",
+  version: "0.1.0",
+  url: "http://localhost:5000/hotel/",
+  skills: [
+    {
+      id: "hotel",
+      name: "Hotel Operations",
+      description: "Handle hotel-related tasks like booking and availability.",
+      tags: ["hotel", "booking"],
+    },
+  ],
+  capabilities: {
+    pushNotifications: false,
+    streamingResponses: true,
+  },
+};
+
+class HotelExecutor {
+  async execute(requestContext, eventBus) {
+    try {
+      console.log("🏨 [Hotel Executor] Incoming A2A Request:", requestContext);
+
+      const userMessageContent =
+        requestContext.userMessage?.parts?.[0]?.text || "Default message";
+
+      const checkpointer = await createCheckpointer();
+      const agent = createReactAgent({ llm, tools: hotelTools, checkpointer });
+
+      const response = await agent.invoke(
+        { messages: [{ role: "user", content: userMessageContent }] },
+        { configurable: { thread_id: requestContext.contextId } }
+      );
+
+      const lastMessage = response.messages?.at(-1);
+      const finalReply = Array.isArray(lastMessage?.content)
+        ? lastMessage.content.map((c) => c.text || "").join("")
+        : lastMessage?.content || "No response";
+
+      const responseMessage = {
+        kind: "message",
+        messageId: uuidv4(),
+        role: "agent",
+        parts: [{ kind: "text", text: finalReply }],
+        contextId: requestContext.contextId,
+      };
+
+      console.log("✅ [Hotel Executor] Final Reply:", finalReply);
+      eventBus.publish(responseMessage);
+      eventBus.finished();
+    } catch (err) {
+      console.error("❌ [Hotel Executor] Error:", err);
+      eventBus.finished();
+    }
+  }
+
+  async cancelTask() {
+    console.log("🛑 [Hotel Executor] Task cancelled");
+  }
+}
+
+const hotelExecutor = new HotelExecutor();
+const hotelHandler = new DefaultRequestHandler(
+  hotelAgentCard,
+  new InMemoryTaskStore(),
+  hotelExecutor
+);
+
+const hotelAppBuilder = new A2AExpressApp(hotelHandler);
+const hotelExpressApp = hotelAppBuilder.setupRoutes(express());
+
+// --- Combined Server ---
+const app = express();
+
+app.use('/flight', flightExpressApp);
+app.use('/hotel', hotelExpressApp);
+
+app.listen(5000, () => {
+  console.log("Combined A2A Agent Server running at http://localhost:5000");
+  console.log("Flight Agent: http://localhost:5000/flight/");
+  console.log("Hotel Agent: http://localhost:5000/hotel/");
 });

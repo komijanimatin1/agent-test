@@ -72,7 +72,7 @@
       "room_type": "Double",
       "check_in": "16:00",
       "check_out": "10:00",
-      "reserved": true,
+      "reserved": false,
       "available_rooms": 39
     },
     {
@@ -87,7 +87,7 @@
       "room_type": "Deluxe Suite",
       "check_in": "14:00",
       "check_out": "12:00",
-      "reserved": true,
+      "reserved": false,
       "available_rooms": 38
     },
     {
@@ -1953,7 +1953,7 @@
         "checked": "20kg"
       },
       "seats_remaining": 48,
-      "reserved": true
+      "reserved": false
     },
     {
       "id": "EU003",
@@ -2025,7 +2025,7 @@
         "checked": "20kg"
       },
       "seats_remaining": 45,
-      "reserved": false
+      "reserved": true
     },
     {
       "id": "EU006",

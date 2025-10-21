@@ -12,7 +12,7 @@ import { ChatOpenAI } from "@langchain/openai";
 
 import { MongoDBSaver } from "@langchain/langgraph-checkpoint-mongodb";
 import { MongoClient } from "mongodb";
-
+// import prompt  from "./prompt.js";
 // ------------------ TOOLS ------------------
 
 // 🔹 Flights
@@ -128,7 +128,7 @@ async function createCheckpointer() {
 
 // ------------------ LLM ------------------
 const llm = new ChatOpenAI({
-  apiKey: "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",
+  apiKey: "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",
   model: "openai/gpt-4o",
   temperature: 0,
   configuration: {
@@ -149,7 +149,7 @@ async function runScenario() {
   });
 
   const steps = [
-   "yes"
+   "reserve a hotel for this travel",
   ];
 
   for (const msg of steps) {

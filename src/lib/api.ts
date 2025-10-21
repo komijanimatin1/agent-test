@@ -4,19 +4,43 @@ const API_BASE_URL = 'http://localhost:3001';
 
 // Types for our data models
 export interface Hotel {
-  id: number;
+  id: string;
   name: string;
   location: string;
-  price: number;
+  price_per_night: number;
+  stars: number;
+  has_pool: boolean;
+  has_wifi: boolean;
+  has_gym: boolean;
+  room_type: string;
+  check_in: string;
+  check_out: string;
   reserved: boolean;
+  available_rooms: number;
 }
 
 export interface Flight {
-  id: number;
+  id: string;
+  continent: string;
   from: string;
+  from_airport: string;
   to: string;
+  to_airport: string;
+  airline: string;
+  flight_number: string;
   date: string;
-  price: number;
+  departure_time: string;
+  arrival_time: string;
+  duration: string;
+  price: {
+    economy: number;
+    business: number;
+  };
+  baggage: {
+    carry_on: string;
+    checked: string;
+  };
+  seats_remaining: number;
   reserved: boolean;
 }
 
@@ -35,7 +59,7 @@ export const hotelApi = {
     return response.data;
   },
   
-  toggleReservation: async (id: number): Promise<Hotel> => {
+  toggleReservation: async (id: string): Promise<Hotel> => {
     // First get the current hotel data
     const currentResponse = await axios.get(`${API_BASE_URL}/hotels/${id}`);
     const currentHotel = currentResponse.data;
@@ -56,7 +80,7 @@ export const flightApi = {
     return response.data;
   },
   
-  toggleReservation: async (id: number): Promise<Flight> => {
+  toggleReservation: async (id: string): Promise<Flight> => {
     // First get the current flight data
     const currentResponse = await axios.get(`${API_BASE_URL}/flights/${id}`);
     const currentFlight = currentResponse.data;

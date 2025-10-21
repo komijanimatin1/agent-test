@@ -1,19 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 import { flightApi, Flight } from '@/lib/api';
-import ReservationCard from '@/components/ReservationCard';
+import FlightCard from '@/components/FlightCard';
 
 export default function FlightsPage() {
-  const [loadingStates, setLoadingStates] = useState<Record<number, boolean>>({});
+  const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>({});
   
   // Fetch flights data using SWR
   const { data: flights, error, mutate } = useSWR<Flight[]>('flights', flightApi.getAll, {
     refreshInterval: 5000, // Refresh every 5 seconds
   });
 
-  const handleToggleReservation = async (id: number) => {
+  const handleToggleReservation = async (id: string) => {
     setLoadingStates(prev => ({ ...prev, [id]: true }));
     
     try {
@@ -74,13 +74,9 @@ export default function FlightsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {flights.map((flight) => (
-            <ReservationCard
+            <FlightCard
               key={flight.id}
-              id={flight.id}
-              title={`${flight.from} → ${flight.to}`}
-              subtitle={`Departure: ${flight.date}`}
-              price={flight.price}
-              reserved={flight.reserved}
+              flight={flight}
               onToggleReservation={handleToggleReservation}
               isLoading={loadingStates[flight.id] || false}
             />

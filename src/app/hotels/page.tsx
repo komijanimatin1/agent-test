@@ -1,19 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 import { hotelApi, Hotel } from '@/lib/api';
-import ReservationCard from '@/components/ReservationCard';
+import HotelCard from '@/components/HotelCard';
 
 export default function HotelsPage() {
-  const [loadingStates, setLoadingStates] = useState<Record<number, boolean>>({});
+  const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>({});
   
   // Fetch hotels data using SWR
   const { data: hotels, error, mutate } = useSWR<Hotel[]>('hotels', hotelApi.getAll, {
     refreshInterval: 5000, // Refresh every 5 seconds
   });
 
-  const handleToggleReservation = async (id: number) => {
+  const handleToggleReservation = async (id: string) => {
     setLoadingStates(prev => ({ ...prev, [id]: true }));
     
     try {
@@ -74,13 +74,9 @@ export default function HotelsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {hotels.map((hotel) => (
-            <ReservationCard
+            <HotelCard
               key={hotel.id}
-              id={hotel.id}
-              title={hotel.name}
-              subtitle={hotel.location}
-              price={hotel.price}
-              reserved={hotel.reserved}
+              hotel={hotel}
               onToggleReservation={handleToggleReservation}
               isLoading={loadingStates[hotel.id] || false}
             />

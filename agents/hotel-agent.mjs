@@ -8,7 +8,7 @@ import { MongoDBSaver } from "@langchain/langgraph-checkpoint-mongodb";
 import { DefaultRequestHandler, InMemoryTaskStore } from "@a2a-js/sdk/server";
 import { A2AExpressApp } from "@a2a-js/sdk/server/express";
 
-// Shared MongoClient for efficiency
+// --- Shared MongoClient for persistence ---
 const mongoUri =
   "mongodb+srv://agent-test:agent-test1404@langchain.ebn5nxx.mongodb.net/?retryWrites=true&w=majority&appName=LangChain";
 const mongoClient = new MongoClient(mongoUri);
@@ -22,13 +22,13 @@ async function createCheckpointer() {
   });
 }
 
-// MCP Tools
+// --- MCP Tools (connect to hotel MCP server) ---
 const mcpClient = new MultiServerMCPClient({
-  "flight-mcp": { url: "http://localhost:4001/mcp" },
+  "hotel-mcp": { url: "http://localhost:4002/mcp" },
 });
 const tools = await mcpClient.getTools();
 
-// LLM
+// --- LLM Configuration ---
 const llm = new ChatOpenAI({
   apiKey:
     "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",
@@ -39,39 +39,40 @@ const llm = new ChatOpenAI({
   },
 });
 
-// AgentCard
-const flightAgentCard = {
-  name: "Flight Agent",
-  description: "An agent for handling flight bookings and information.",
+// --- AgentCard Definition ---
+const hotelAgentCard = {
+  name: "Hotel Agent",
+  description: "An agent for handling hotel bookings and information.",
   protocolVersion: "0.3.0",
   version: "0.1.0",
-  url: "http://localhost:5001/",
+  url: "http://localhost:5002/",
   skills: [
     {
-      id: "flight",
-      name: "Flight Operations",
-      description: "Handle flight-related tasks",
-      tags: ["flight", "booking"],
+      id: "hotel",
+      name: "Hotel Operations",
+      description: "Handle hotel-related tasks like booking and availability.",
+      tags: ["hotel", "booking"],
     },
   ],
   capabilities: {
-    // even if you don't use them, define them explicitly
     pushNotifications: false,
     streamingResponses: true,
   },
 };
 
 // --- Executor Implementation ---
-class FlightExecutor {
+class HotelExecutor {
   async execute(requestContext, eventBus) {
     try {
-      console.log("🛫 [Executor] Incoming A2A Request:", requestContext);
+      console.log("🏨 [Executor] Incoming A2A Request:", requestContext);
 
       const userMessageContent =
         requestContext.initialMessage?.parts?.[0]?.text || "Default message";
 
       const checkpointer = await createCheckpointer();
       const agent = createReactAgent({ llm, tools, checkpointer });
+
+      console.log("🔍 [Executor] Processing message:", userMessageContent);
 
       const response = await agent.invoke(
         { messages: [{ role: "user", content: userMessageContent }] },
@@ -106,9 +107,9 @@ class FlightExecutor {
 }
 
 // --- A2A Server Setup ---
-const executor = new FlightExecutor();
+const executor = new HotelExecutor();
 const handler = new DefaultRequestHandler(
-  flightAgentCard,
+  hotelAgentCard,
   new InMemoryTaskStore(),
   executor
 );
@@ -116,6 +117,6 @@ const handler = new DefaultRequestHandler(
 const appBuilder = new A2AExpressApp(handler);
 const expressApp = appBuilder.setupRoutes(express());
 
-expressApp.listen(5001, () => {
-  console.log("🚀 Flight A2A Agent Server running at http://localhost:5001");
+expressApp.listen(5002, () => {
+  console.log("🏨 Hotel A2A Agent Server running at http://localhost:5002");
 });

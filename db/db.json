@@ -27,7 +27,7 @@
       "room_type": "Suite",
       "check_in": "16:00",
       "check_out": "10:00",
-      "reserved": false,
+      "reserved": true,
       "available_rooms": 9
     },
     {
@@ -357,7 +357,7 @@
       "room_type": "Single",
       "check_in": "15:00",
       "check_out": "11:00",
-      "reserved": true,
+      "reserved": false,
       "available_rooms": 46
     },
     {
@@ -2025,7 +2025,7 @@
         "checked": "20kg"
       },
       "seats_remaining": 45,
-      "reserved": true
+      "reserved": false
     },
     {
       "id": "EU006",

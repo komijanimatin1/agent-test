@@ -116,6 +116,35 @@ const handler = new DefaultRequestHandler(
 const appBuilder = new A2AExpressApp(handler);
 const expressApp = appBuilder.setupRoutes(express());
 
+// Add a simple /chat endpoint for direct communication
+expressApp.use(express.json());
+expressApp.post("/chat", async (req, res) => {
+  try {
+    const { message, userId = "default-user" } = req.body;
+    console.log("💬 [Chat] Received message:", message, "| User ID:", userId);
+
+    const checkpointer = await createCheckpointer();
+    const agent = createReactAgent({ llm, tools, checkpointer });
+
+    const response = await agent.invoke(
+      { messages: [{ role: "user", content: message }] },
+      { configurable: { thread_id: `flight-${userId}` } }
+    );
+
+    const lastMessage = response.messages?.at(-1);
+    const finalReply = Array.isArray(lastMessage?.content)
+      ? lastMessage.content.map((c) => c.text || "").join("")
+      : lastMessage?.content || "No response";
+
+    console.log("✅ [Chat] Sending reply:", finalReply);
+    res.json({ reply: finalReply });
+  } catch (error) {
+    console.error("❌ [Chat] Error:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 expressApp.listen(5001, () => {
   console.log("🚀 Flight A2A Agent Server running at http://localhost:5001");
+  console.log("💬 Simple chat endpoint: POST http://localhost:5001/chat");
 });
